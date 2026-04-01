@@ -6,13 +6,13 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:54:04 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/01 18:57:42 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/01 19:46:47 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	my_pixel_put(t_mlx *data, int x, int y, int color)
+void	my_pixel_put(t_game *data, int x, int y, int color)
 {
 	char	*dst;
 
@@ -24,7 +24,7 @@ void	my_pixel_put(t_mlx *data, int x, int y, int color)
 	}
 }
 
-int	esc_handler(int keycode, t_mlx *data)
+int	esc_handler(int keycode, t_game *data)
 {
 	if (keycode == 65307)
 	{
@@ -38,7 +38,7 @@ int	esc_handler(int keycode, t_mlx *data)
 	return (0);
 }
 
-int	close_window(t_mlx *data)
+int	close_window(t_game *data)
 {
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_destroy_window(data->mlx, data->window);
