@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:54:04 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/02 18:04:48 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/02 22:12:34 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	draw_player(t_mlx *mlx, int pos_x, int pos_y)
 		j = 0;
 		while (j < 10)
 		{
-			my_pixel_put(mlx, pos_x + i, pos_y + j, 0x00FFFF00);
+			my_pixel_put(mlx, pos_x + i, pos_y + j, 0x00FF0000);
 			j++;
 		}
 		i++;
@@ -79,6 +79,7 @@ int	render_frame(t_game	*data)
 	if (data->player.key_d)
 		data->player.pos_x += 0.05;
 	paint_bg(&data->mlx, 0x00808080);
+	draw_2d_map(data);
 	draw_player(&data->mlx, data->player.pos_x, data->player.pos_y);
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.win, data->mlx.img, 0, 0);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:14:47 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/02 18:04:43 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/02 22:03:23 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include "includes/mlx/mlx.h"
 # include <stdio.h>
 # include <unistd.h>
+# include <string.h>
+
+# define PI 3.1415926535
 
 typedef struct s_mlx
 {
@@ -39,10 +42,24 @@ typedef struct s_player
 	int		key_d;
 }			t_player;
 
+typedef struct s_map
+{
+	char	map_grid[10][10];
+	int		width;
+	int		height;
+	int		floor_color;
+	int		ceiling_color;
+	char	*north_texture;
+	char	*south_texture;
+	char	*east_texture;
+	char	*west_texture;
+}			t_map;
+
 typedef struct s_game
 {
 	t_mlx		mlx;
 	t_player	player;
+	t_map		map;
 }			t_game;
 
 # define WINDOW_WIDTH 800
@@ -58,4 +75,14 @@ int		key_release(int keycode, t_game *data);
 int		render_frame(t_game	*data);
 void	draw_player(t_mlx *mlx, int pos_x, int pos_y);
 void	paint_bg(t_mlx *mlx, int color);
+
+// Init functions
+void	init_mlx(t_mlx *mlx);
+void	init_player_values(t_game *data);
+
+// Map functions
+void	draw_2d_map(t_game *data);
+void	draw_map_block(t_game *data, int x_pixel, int y_pixel, int color);
+void	init_map(t_map *map);
+
 #endif

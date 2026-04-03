@@ -11,7 +11,9 @@ MLX_A = includes/mlx/libmlx.a
 
 SRCS = main.c \
 		draw_utils.c \
-		key_functions.c
+		key_functions.c \
+		init_functions.c \
+		map_functions.c
 
 OBJ_DIR = objs/
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))
