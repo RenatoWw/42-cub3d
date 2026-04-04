@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:14:47 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/02 22:03:23 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/04 00:07:53 by renato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <string.h>
-
+# include <math.h>
 # define PI 3.1415926535
 
 typedef struct s_mlx
@@ -36,10 +36,17 @@ typedef struct s_player
 {
 	double	pos_x;
 	double	pos_y;
+	double	delta_x;
+	double	delta_y;
+	double	player_angle;
+	double	move_speed;
+	double	rotation_speed;
 	int		key_w;
 	int		key_a;
 	int		key_s;
 	int		key_d;
+	int		key_left;
+	int		key_right;
 }			t_player;
 
 typedef struct s_map
@@ -73,7 +80,7 @@ int		key_release(int keycode, t_game *data);
 
 // Drawing functions
 int		render_frame(t_game	*data);
-void	draw_player(t_mlx *mlx, int pos_x, int pos_y);
+void	draw_player(t_mlx *mlx, t_player player);
 void	paint_bg(t_mlx *mlx, int color);
 
 // Init functions

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_functions.c                                   :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 18:12:53 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/02 18:13:09 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/04 00:17:27 by renato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,11 @@ void	init_player_values(t_game *data)
 	data->player.key_s = 0;
 	data->player.key_a = 0;
 	data->player.key_d = 0;
+	data->player.key_left = 0;
+	data->player.key_right = 0;
+	data->player.player_angle = 0.0;
+	data->player.delta_x = cos(data->player.player_angle) * 0.05;
+	data->player.delta_y = sin(data->player.player_angle) * 0.05;
+	data->player.move_speed = 0.05;
+	data->player.rotation_speed = 0.003;
 }
