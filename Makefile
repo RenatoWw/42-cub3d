@@ -14,7 +14,10 @@ SRCS = main.c \
 		key.c \
 		init.c \
 		map.c \
-		mlx_utils.c
+		mlx_utils.c \
+		player.c \
+		raycasting.c \
+		raycasting_utils.c
 
 OBJ_DIR = objs/
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))

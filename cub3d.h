@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:14:47 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/04 00:07:53 by renato           ###   ########.fr       */
+/*   Updated: 2026/04/05 19:32:22 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <string.h>
 # include <math.h>
 # define PI 3.1415926535
+# define DR 0.0174533
+# define FOV 60
 
 typedef struct s_mlx
 {
@@ -31,6 +33,31 @@ typedef struct s_mlx
 	int		line_length;
 	int		endian;
 }			t_mlx;
+
+typedef struct s_dist
+{
+	double	hx;
+	double	hy;
+	double	vx;
+	double	vy;
+	double	dist_h;
+	double	dist_v;
+}			t_dist;
+
+typedef struct s_rays
+{
+	int		rays;
+	int		map_x;
+	int		map_y;
+	int		depth_of_field;
+	int		ray_limit;
+	double	ray_angle;
+	double	ray_x;
+	double	ray_y;
+	double	offset_x;
+	double	offset_y;
+	double	tangent;
+}			t_rays;
 
 typedef struct s_player
 {
@@ -47,7 +74,15 @@ typedef struct s_player
 	int		key_d;
 	int		key_left;
 	int		key_right;
+	t_rays	rays;
 }			t_player;
+
+typedef struct s_point
+{
+	int	x;
+	int	y;
+	int	color;
+}		t_point;
 
 typedef struct s_map
 {
@@ -80,16 +115,31 @@ int		key_release(int keycode, t_game *data);
 
 // Drawing functions
 int		render_frame(t_game	*data);
-void	draw_player(t_mlx *mlx, t_player player);
 void	paint_bg(t_mlx *mlx, int color);
+void	draw_line(t_mlx *mlx, t_point p1, t_point p2, int color);
 
 // Init functions
 void	init_mlx(t_mlx *mlx);
-void	init_player_values(t_game *data);
+void	init_player_values(t_player *player);
 
 // Map functions
 void	draw_2d_map(t_game *data);
 void	draw_map_block(t_game *data, int x_pixel, int y_pixel, int color);
 void	init_map(t_map *map);
+
+// Player functions
+void	set_player_movement(t_player *p);
+void	handle_rotation(t_player *p);
+void	draw_player(t_mlx *mlx, t_player player);
+
+// Raycasting
+void	draw_rays_2d(t_player *player, t_rays *rays, t_map map, t_mlx *mlx);
+double	get_distance(double px, double py, double rx, double ry);
+int		is_wall(t_map map, int map_x, int map_y);
+void	find_wall_coordinates(t_rays *rays, t_map map);
+t_dist	get_wall_distance(t_player *p, t_rays *rays, t_map map, t_point *end);
+void	check_vertical_lines(t_player *player, t_rays *rays, t_map map);
+void	check_horizontal_lines(t_player *player, t_rays *rays, t_map map);
+void	normalize_angle(t_rays *rays);
 
 #endif

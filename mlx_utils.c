@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 23:01:43 by renato            #+#    #+#             */
-/*   Updated: 2026/04/03 23:03:41 by renato           ###   ########.fr       */
+/*   Updated: 2026/04/05 19:26:12 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,28 @@ void	my_pixel_put(t_mlx *data, int x, int y, int color)
 		dst = data->addr + (y * data->line_length + x
 				* (data->bits_per_pixel / 8));
 		*(unsigned int *)dst = color;
+	}
+}
+
+void	draw_line(t_mlx *mlx, t_point p1, t_point p2, int color)
+{
+	int		i;
+	int		step;
+	float	x;
+	float	y;
+
+	if (abs(p2.x - p1.x) >= abs(p2.y - p1.y))
+		step = abs(p2.x - p1.x);
+	else
+		step = abs(p2.y - p1.y);
+	x = p1.x;
+	y = p1.y;
+	i = 0;
+	while (i <= step)
+	{
+		my_pixel_put(mlx, round(x), round(y), color);
+		x += (p2.x - p1.x) / (float)step;
+		y += (p2.y - p1.y) / (float)step;
+		i++;
 	}
 }

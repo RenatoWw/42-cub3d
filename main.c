@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:10:51 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/03 23:54:11 by renato           ###   ########.fr       */
+/*   Updated: 2026/04/05 14:52:47 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(void)
 {
 	t_game		data;
 
-	init_player_values(&data);
+	init_player_values(&data.player);
 	init_mlx(&data.mlx);
 	init_map(&data.map);
 	mlx_loop_hook(data.mlx.mlx, &render_frame, &data);
