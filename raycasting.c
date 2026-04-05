@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 15:37:58 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/05 19:32:30 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/05 19:36:03 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	check_vertical_lines(t_player *player, t_rays *rays, t_map map)
 
 void	draw_rays_2d(t_player *player, t_rays *rays, t_map map, t_mlx *mlx)
 {
-	t_dist	wall_dist;
 	t_point	start;
 	t_point	end;
 	int		i;
@@ -83,13 +82,10 @@ void	draw_rays_2d(t_player *player, t_rays *rays, t_map map, t_mlx *mlx)
 	i = 0;
 	while (i < FOV)
 	{
-		wall_dist = get_wall_distance(player, rays, map, &end);
+		get_wall_distance(player, rays, map, &end);
 		start.x = player->pos_x + 5;
 		start.y = player->pos_y + 5;
-		if (wall_dist.dist_h < wall_dist.dist_v)
-			draw_line(mlx, start, end, 0x0000FF00);
-		else
-			draw_line(mlx, start, end, 0x0000FF00);
+		draw_line(mlx, start, end, 0x0000FF00);
 		i++;
 		rays->ray_angle += DR;
 		normalize_angle(rays);
