@@ -1,7 +1,7 @@
 NAME = cub3d
 CC = cc
 # compilação
-CFLAGS = -Wall -Werror -Wextra -Iincludes/mlx -D BUFFER_SIZE=1000 -Ofast
+CFLAGS = -Wall -Werror -Wextra -Iincludes/mlx -D BUFFER_SIZE=1000 -O3
 # linkagem
 LFLAGS = -lmlx -lXext -lX11 -lm -Lincludes/libft/ -Lincludes/mlx -lft -lbsd
 LIBFT = includes/libft/

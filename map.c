@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_functions.c                                    :+:      :+:    :+:   */
+/*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 22:02:35 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/03 22:18:49 by renato           ###   ########.fr       */
+/*   Updated: 2026/04/06 18:10:14 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_map(t_map *map)
 	{1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
 	{1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
 	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-	{1, 0, 1, 0, 0, 0, 0, 0, 0, 1},
+	{1, 0, 1, 1, 1, 0, 0, 0, 0, 1},
 	{1, 0, 1, 0, 0, 0, 0, 0, 0, 1},
 	{1, 0, 1, 0, 0, 0, 0, 0, 0, 1},
 	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
@@ -40,10 +40,10 @@ void	draw_map_block(t_game *data, int x_pixel, int y_pixel, int color)
 
 	i = 0;
 	offset_size = 32;
-	while (i < offset_size - 1)
+	while (i < offset_size)
 	{
 		j = 0;
-		while (j < offset_size - 1)
+		while (j < offset_size)
 		{
 			my_pixel_put(&data->mlx, x_pixel + i, y_pixel + j, color);
 			j++;
@@ -60,7 +60,7 @@ void	draw_2d_map(t_game *data)
 	int	offset_size;
 
 	y = 0;
-	offset_size = 32;
+	offset_size = MAP_OFFSET;
 	while (y < data->map.height)
 	{
 		x = 0;

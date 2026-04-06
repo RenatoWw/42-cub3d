@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 18:12:53 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/05 14:55:34 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/06 17:19:29 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	init_mlx(t_mlx *mlx)
 
 void	init_player_values(t_player *player)
 {
-	player->pos_x = 200.0;
-	player->pos_y = 200.0;
+	player->pos_x = 40.0;
+	player->pos_y = 40.0;
 	player->key_w = 0;
 	player->key_s = 0;
 	player->key_a = 0;
@@ -32,8 +32,8 @@ void	init_player_values(t_player *player)
 	player->key_left = 0;
 	player->key_right = 0;
 	player->player_angle = 0.0;
-	player->move_speed = 0.05;
+	player->move_speed = MOVE_SPEED;
 	player->delta_x = cos(player->player_angle) * player->move_speed;
 	player->delta_y = sin(player->player_angle) * player->move_speed;
-	player->rotation_speed = 0.001;
+	player->rotation_speed = ROTATION_SPEED;
 }

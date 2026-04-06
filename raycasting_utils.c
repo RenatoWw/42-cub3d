@@ -6,18 +6,18 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 18:53:57 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/05 19:33:04 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/06 17:59:01 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	normalize_angle(t_rays *rays)
+void	normalize_angle(double *angle)
 {
-	if (rays->ray_angle < 0)
-		rays->ray_angle += 2 * PI;
-	if (rays->ray_angle > 2 * PI)
-		rays->ray_angle -= 2 * PI;
+	if (*angle < 0)
+		*angle += 2 * PI;
+	if (*angle > 2 * PI)
+		*angle -= 2 * PI;
 }
 
 int	is_wall(t_map map, int map_x, int map_y)
@@ -40,8 +40,8 @@ void	find_wall_coordinates(t_rays *rays, t_map map)
 {
 	while (rays->depth_of_field < rays->ray_limit)
 	{
-		rays->map_x = (int)(rays->ray_x) / 32;
-		rays->map_y = (int)(rays->ray_y) / 32;
+		rays->map_x = (int)(rays->ray_x) / MAP_OFFSET;
+		rays->map_y = (int)(rays->ray_y) / MAP_OFFSET;
 		if (is_wall(map, rays->map_x, rays->map_y))
 			rays->depth_of_field = rays->ray_limit;
 		else
@@ -53,29 +53,21 @@ void	find_wall_coordinates(t_rays *rays, t_map map)
 	}
 }
 
-t_dist	get_wall_distance(t_player *p, t_rays *rays, t_map map, t_point *end)
+t_dist	get_wall_distance(t_player *p, t_rays *rays, t_map map)
 {
-	t_dist	wall_dist;
-
 	check_horizontal_lines(p, rays, map);
-	wall_dist.hx = rays->ray_x;
-	wall_dist.hy = rays->ray_y;
-	wall_dist.dist_h = get_distance(p->pos_x,
-			p->pos_y, wall_dist.hx, wall_dist.hy);
+	rays->wd.hx = rays->ray_x;
+	rays->wd.hy = rays->ray_y;
+	rays->wd.dist_h = get_distance(p->pos_x,
+			p->pos_y, rays->wd.hx, rays->wd.hy);
 	check_vertical_lines(p, rays, map);
-	wall_dist.vx = rays->ray_x;
-	wall_dist.vy = rays->ray_y;
-	wall_dist.dist_v = get_distance(p->pos_x,
-			p->pos_y, wall_dist.vx, wall_dist.vy);
-	if (wall_dist.dist_h < wall_dist.dist_v)
-	{
-		end->x = wall_dist.hx;
-		end->y = wall_dist.hy;
-	}
+	rays->wd.vx = rays->ray_x;
+	rays->wd.vy = rays->ray_y;
+	rays->wd.dist_v = get_distance(p->pos_x,
+			p->pos_y, rays->wd.vx, rays->wd.vy);
+	if (rays->wd.dist_h < rays->wd.dist_v)
+		rays->wd.dist_t = rays->wd.dist_h;
 	else
-	{
-		end->x = wall_dist.vx;
-		end->y = wall_dist.vy;
-	}
-	return (wall_dist);
+		rays->wd.dist_t = rays->wd.dist_v;
+	return (rays->wd);
 }

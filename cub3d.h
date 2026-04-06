@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:14:47 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/05 19:32:22 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/06 18:10:31 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@
 # define PI 3.1415926535
 # define DR 0.0174533
 # define FOV 60
+# define MAP_OFFSET 16
+# define MOVE_SPEED 0.035
+# define ROTATION_SPEED 0.0015
+# define WINDOW_WIDTH 800
+# define WINDOW_HEIGHT 600
 
 typedef struct s_mlx
 {
@@ -42,6 +47,8 @@ typedef struct s_dist
 	double	vy;
 	double	dist_h;
 	double	dist_v;
+	double	dist_t;
+	double	line_height;
 }			t_dist;
 
 typedef struct s_rays
@@ -51,12 +58,14 @@ typedef struct s_rays
 	int		map_y;
 	int		depth_of_field;
 	int		ray_limit;
+	int		wall_color;
 	double	ray_angle;
 	double	ray_x;
 	double	ray_y;
 	double	offset_x;
 	double	offset_y;
 	double	tangent;
+	t_dist	wd;
 }			t_rays;
 
 typedef struct s_player
@@ -104,9 +113,6 @@ typedef struct s_game
 	t_map		map;
 }			t_game;
 
-# define WINDOW_WIDTH 800
-# define WINDOW_HEIGHT 600
-
 // Minilibx utils functions
 void	my_pixel_put(t_mlx *data, int x, int y, int color);
 int		close_window(t_mlx *data);
@@ -115,7 +121,7 @@ int		key_release(int keycode, t_game *data);
 
 // Drawing functions
 int		render_frame(t_game	*data);
-void	paint_bg(t_mlx *mlx, int color);
+void	paint_bg(t_mlx *mlx, int floor_color, int ceiling_color);
 void	draw_line(t_mlx *mlx, t_point p1, t_point p2, int color);
 
 // Init functions
@@ -133,13 +139,14 @@ void	handle_rotation(t_player *p);
 void	draw_player(t_mlx *mlx, t_player player);
 
 // Raycasting
-void	draw_rays_2d(t_player *player, t_rays *rays, t_map map, t_mlx *mlx);
+void	draw_rays_3d(t_player *player, t_rays *rays, t_map map, t_mlx *mlx);
 double	get_distance(double px, double py, double rx, double ry);
 int		is_wall(t_map map, int map_x, int map_y);
 void	find_wall_coordinates(t_rays *rays, t_map map);
-t_dist	get_wall_distance(t_player *p, t_rays *rays, t_map map, t_point *end);
+t_dist	get_wall_distance(t_player *p, t_rays *rays, t_map map);
 void	check_vertical_lines(t_player *player, t_rays *rays, t_map map);
 void	check_horizontal_lines(t_player *player, t_rays *rays, t_map map);
-void	normalize_angle(t_rays *rays);
+void	normalize_angle(double *angle);
+void	set_wall_color(t_rays *rays);
 
 #endif
