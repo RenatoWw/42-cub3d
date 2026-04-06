@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 17:49:40 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/03 23:37:37 by renato           ###   ########.fr       */
+/*   Updated: 2026/04/06 18:27:21 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,26 @@ int	key_release(int keycode, t_game *data)
 		data->player.key_left = 0;
 	else if (keycode == 65363)
 		data->player.key_right = 0;
+	return (0);
+}
+
+int	mouse_move(int x, int y, t_game *data)
+{
+	int		delta_x;
+	double	sensitivity;
+
+	(void)y;
+	if (x == WINDOW_WIDTH / 2)
+		return (0);
+	sensitivity = ROTATION_SPEED;
+	delta_x = x - (WINDOW_WIDTH / 2);
+	data->player.player_angle += delta_x * sensitivity;
+	normalize_angle(&data->player.player_angle);
+	data->player.delta_x = cos(data->player.player_angle)
+		* data->player.move_speed;
+	data->player.delta_y = sin(data->player.player_angle)
+		* data->player.move_speed;
+	mlx_mouse_move(data->mlx.mlx, data->mlx.win,
+		WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 	return (0);
 }
