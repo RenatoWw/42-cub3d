@@ -3,33 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapinhei <dapinhei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 22:02:35 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/07 07:01:02 by dapinhei         ###   ########.fr       */
+/*   Updated: 2026/04/07 16:17:41 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_map(t_map *map)
-{
-	static char temp_map[10][10] = {
-		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-		{1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 1, 1, 1, 0, 0, 0, 0, 1},
-		{1, 0, 1, 0, 0, 0, 0, 0, 0, 1},
-		{1, 0, 1, 0, 0, 0, 0, 0, 0, 1},
-		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-	};
-	map->width = 10;
-	map->height = 10;
-	ft_memcpy(map->map_grid, temp_map, sizeof(temp_map));
-}
+// void	init_map(t_map *map)
+// {
+// 	// static char	temp_map[10][10] = {
+// 	// {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+// 	// {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
+// 	// {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
+// 	// {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
+// 	// {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
+// 	// {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
+// 	// {1, 0, 1, 1, 1, 0, 0, 0, 0, 1},
+// 	// {1, 0, 1, 0, 0, 0, 0, 0, 0, 1},
+// 	// {1, 0, 1, 0, 0, 0, 0, 0, 0, 1},
+// 	// {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+// 	// };
+
+// 	// map->width = 10;
+// 	// map->height = 10;
+// 	// ft_memcpy(map->map_grid, temp_map, sizeof(temp_map));
+// }
 
 void	draw_map_block(t_game *data, int x_pixel, int y_pixel, int color)
 {
@@ -57,15 +58,21 @@ void	draw_2d_map(t_game *data)
 	int	y;
 	int	color;
 	int	offset_size;
+	int	row_len;
+	char	tile;
 
 	y = 0;
 	offset_size = MAP_OFFSET;
 	while (y < data->map.height)
 	{
+		row_len = (int)ft_strlen(data->map.map_grid[y]);
 		x = 0;
 		while (x < data->map.width)
 		{
-			if (data->map.map_grid[y][x] == 1)
+			tile = ' ';
+			if (x < row_len)
+				tile = data->map.map_grid[y][x];
+			if (tile == '1')
 				color = 0x00FFFFFF;
 			else
 				color = 0x00000000;

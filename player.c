@@ -3,14 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapinhei <dapinhei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 15:16:53 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/07 09:09:27 by dapinhei         ###   ########.fr       */
+/*   Updated: 2026/04/07 16:21:02 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	is_walkable_tile(t_map map, int map_x, int map_y)
+{
+	int	row_len;
+
+	if (map_y < 0 || map_y >= map.height)
+		return (0);
+	if (map_x < 0 || map_x >= map.width)
+		return (0);
+	row_len = (int)ft_strlen(map.map_grid[map_y]);
+	if (map_x >= row_len)
+		return (0);
+	return (map.map_grid[map_y][map_x] == '0');
+}
 
 void	handle_rotation(t_player *p)
 {
@@ -37,20 +51,20 @@ void	move_player(t_player *p, t_map map, double step_x, double step_y)
 	t_colission	col;
 
 	if (step_x < 0)
-		col.x_offset = -5;
+		col.x_offset = -2;
 	else
-		col.x_offset = 5;
+		col.x_offset = 2;
 	if (step_y < 0)
-		col.y_offset = -5;
+		col.y_offset = -2;
 	else
-		col.y_offset = 5;
+		col.y_offset = 2;
 	col.map_x = (int)(p->pos_x / MAP_OFFSET);
 	col.map_y = (int)(p->pos_y / MAP_OFFSET);
 	col.map_x_add = (int)((p->pos_x + step_x + col.x_offset) / MAP_OFFSET);
 	col.map_y_add = (int)((p->pos_y + step_y + col.y_offset) / MAP_OFFSET);
-	if (map.map_grid[col.map_y][col.map_x_add] == '0')
+	if (is_walkable_tile(map, col.map_x_add, col.map_y))
 		p->pos_x += step_x;
-	if (map.map_grid[col.map_y_add][col.map_x] == '0')
+	if (is_walkable_tile(map, col.map_x, col.map_y_add))
 		p->pos_y += step_y;
 }
 

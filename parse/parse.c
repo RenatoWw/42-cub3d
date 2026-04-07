@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapinhei <dapinhei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:17:59 by dapinhei          #+#    #+#             */
-/*   Updated: 2026/04/07 10:18:24 by dapinhei         ###   ########.fr       */
+/*   Updated: 2026/04/07 16:08:39 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	parse_cub(char *file, t_map *map)
 		free(line);
 	}
 	close(fd);
-	finalize_map(map);
 	validate_map(map);
+	finalize_map(map);
 	return (0);
 }

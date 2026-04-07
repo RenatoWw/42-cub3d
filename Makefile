@@ -51,6 +51,7 @@ $(LIBFT_A):
 
 clean:
 	$(MAKE) -C $(LIBFT) clean
+	$(MAKE) -C $(MLX) clean
 	rm -rf $(OBJ_DIR)
 
 fclean: clean

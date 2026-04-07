@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapinhei <dapinhei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 18:53:57 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/07 06:45:25 by dapinhei         ###   ########.fr       */
+/*   Updated: 2026/04/07 17:46:07 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,16 @@ void	normalize_angle(double *angle)
 
 int	is_wall(t_map map, int map_x, int map_y)
 {
+	// int	row_len;
+
 	if (map_y < 0 || map_y >= map.height)
 		return (1);
 	if (map_x < 0 || map_x >= map.width)
 		return (1);
-	if (map.map_grid[map_y][map_x] == 1)
+	// row_len = (int)ft_strlen(map.map_grid[map_y]);
+	// if (map_x >= row_len)
+	// 	return (1);
+	if (map.map_grid[map_y][map_x] == '1' || map.map_grid[map_y][map_x] == ' ')
 		return (1);
 	return (0);
 }
