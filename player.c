@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dapinhei <dapinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 15:16:53 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/06 21:56:52 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/07 09:09:27 by dapinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	move_player(t_player *p, t_map map, double step_x, double step_y)
 	col.map_y = (int)(p->pos_y / MAP_OFFSET);
 	col.map_x_add = (int)((p->pos_x + step_x + col.x_offset) / MAP_OFFSET);
 	col.map_y_add = (int)((p->pos_y + step_y + col.y_offset) / MAP_OFFSET);
-	if (map.map_grid[col.map_y][col.map_x_add] == 0)
+	if (map.map_grid[col.map_y][col.map_x_add] == '0')
 		p->pos_x += step_x;
-	if (map.map_grid[col.map_y_add][col.map_x] == 0)
+	if (map.map_grid[col.map_y_add][col.map_x] == '0')
 		p->pos_y += step_y;
 }
 

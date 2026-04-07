@@ -1,7 +1,7 @@
 NAME = cub3D
 CC = cc
 # compilação
-CFLAGS = -Wall -Werror -Wextra -Iincludes/mlx -D BUFFER_SIZE=1000 -O3
+CFLAGS = -Wall -Werror -Wextra -I. -Iincludes/mlx -Iincludes/get_next_line -D BUFFER_SIZE=1000 -g
 # linkagem
 LFLAGS = -lmlx -lXext -lX11 -lm -Lincludes/libft/ -Lincludes/mlx -lft -lbsd
 LIBFT = includes/libft/
@@ -17,7 +17,16 @@ SRCS = main.c \
 		mlx_utils.c \
 		player.c \
 		raycasting.c \
-		raycasting_utils.c
+		raycasting_utils.c \
+		parse/parse_color.c \
+		parse/parse_map.c \
+		parse/parse_texture.c \
+		parse/parse_utils.c \
+		parse/parse.c \
+		parse/validate_map.c \
+		parse/parse_player.c \
+		includes/get_next_line/get_next_line.c \
+		includes/get_next_line/get_next_line_utils.c
 
 OBJ_DIR = objs/
 OBJS = $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))

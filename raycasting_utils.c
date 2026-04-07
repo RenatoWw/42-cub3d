@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dapinhei <dapinhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 18:53:57 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/06 17:59:01 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/07 06:45:25 by dapinhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	normalize_angle(double *angle)
 {
-	if (*angle < 0)
+	while (*angle < 0)
 		*angle += 2 * PI;
-	if (*angle > 2 * PI)
+	while (*angle > 2 * PI)
 		*angle -= 2 * PI;
 }
 
