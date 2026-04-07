@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 22:02:35 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/07 16:17:41 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/07 19:31:45 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,15 +54,13 @@ void	draw_map_block(t_game *data, int x_pixel, int y_pixel, int color)
 
 void	draw_2d_map(t_game *data)
 {
-	int	x;
-	int	y;
-	int	color;
-	int	offset_size;
-	int	row_len;
+	int		x;
+	int		y;
+	int		color;
+	int		row_len;
 	char	tile;
 
 	y = 0;
-	offset_size = MAP_OFFSET;
 	while (y < data->map.height)
 	{
 		row_len = (int)ft_strlen(data->map.map_grid[y]);
@@ -76,7 +74,7 @@ void	draw_2d_map(t_game *data)
 				color = 0x00FFFFFF;
 			else
 				color = 0x00000000;
-			draw_map_block(data, x * offset_size, y * offset_size, color);
+			draw_map_block(data, x * MAP_OFFSET, y * MAP_OFFSET, color);
 			x++;
 		}
 		y++;

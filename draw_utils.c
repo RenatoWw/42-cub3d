@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:54:04 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/07 16:14:29 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/07 19:50:45 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	set_wall_color(t_rays *rays)
 int	render_frame(t_game	*data)
 {
 	set_player_movement(&data->player, data->map);
-	paint_bg(&data->mlx, 0x00808080, 0x00404040);
+	paint_bg(&data->mlx, data->map.floor_color, data->map.ceiling_color);
 	draw_rays_3d(&data->player, &data->player.rays, data->map, &data->mlx);
 	draw_2d_map(data);
 	draw_player(&data->mlx, data->player);
