@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3D
 CC = cc
 # compilação
 CFLAGS = -Wall -Werror -Wextra -Iincludes/mlx -D BUFFER_SIZE=1000 -O3

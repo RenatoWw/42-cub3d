@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:14:47 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/06 18:20:28 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/06 21:39:11 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,20 @@ typedef struct s_rays
 	double	tangent;
 	t_dist	wd;
 }			t_rays;
+
+typedef struct s_collision
+{
+	int		x_offset;
+	int		y_offset;
+	int		map_x;
+	int		map_y;
+	int		map_x_add;
+	int		map_x_sub;
+	int		map_y_add;
+	int		map_y_sub;
+	double	step_x;
+	double	step_y;
+}			t_colission;
 
 typedef struct s_player
 {
@@ -135,7 +149,7 @@ void	draw_map_block(t_game *data, int x_pixel, int y_pixel, int color);
 void	init_map(t_map *map);
 
 // Player functions
-void	set_player_movement(t_player *p);
+void	set_player_movement(t_player *p, t_map map);
 void	handle_rotation(t_player *p);
 void	draw_player(t_mlx *mlx, t_player player);
 

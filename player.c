@@ -6,39 +6,11 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 15:16:53 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/05 19:34:06 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/06 21:56:52 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	draw_player(t_mlx *mlx, t_player player)
-{
-	double	line_x;
-	double	line_y;
-	int		i;
-	int		j;
-
-	i = 0;
-	while (i < 10)
-	{
-		j = 0;
-		while (j < 10)
-		{
-			my_pixel_put(mlx, player.pos_x + i, player.pos_y + j, 0x00FF0000);
-			j++;
-		}
-		i++;
-	}
-	i = 0;
-	while (i < 20)
-	{
-		line_x = (player.pos_x + 5) + (cos(player.player_angle) * i);
-		line_y = (player.pos_y + 5) + (sin(player.player_angle) * i);
-		my_pixel_put(mlx, (int)line_x, (int)line_y, 0x00FFFF00);
-		i++;
-	}
-}
 
 void	handle_rotation(t_player *p)
 {
@@ -60,27 +32,63 @@ void	handle_rotation(t_player *p)
 	}
 }
 
-void	set_player_movement(t_player *p)
+void	move_player(t_player *p, t_map map, double step_x, double step_y)
 {
-	if (p->key_w)
-	{
-		p->pos_x += p->delta_x;
-		p->pos_y += p->delta_y;
-	}
-	if (p->key_s)
-	{
-		p->pos_x -= p->delta_x;
-		p->pos_y -= p->delta_y;
-	}
+	t_colission	col;
+
+	if (step_x < 0)
+		col.x_offset = -5;
+	else
+		col.x_offset = 5;
+	if (step_y < 0)
+		col.y_offset = -5;
+	else
+		col.y_offset = 5;
+	col.map_x = (int)(p->pos_x / MAP_OFFSET);
+	col.map_y = (int)(p->pos_y / MAP_OFFSET);
+	col.map_x_add = (int)((p->pos_x + step_x + col.x_offset) / MAP_OFFSET);
+	col.map_y_add = (int)((p->pos_y + step_y + col.y_offset) / MAP_OFFSET);
+	if (map.map_grid[col.map_y][col.map_x_add] == 0)
+		p->pos_x += step_x;
+	if (map.map_grid[col.map_y_add][col.map_x] == 0)
+		p->pos_y += step_y;
+}
+
+void	set_strafe_keys(t_player *p, t_map map)
+{
+	double	step_x;
+	double	step_y;
+
 	if (p->key_a)
 	{
-		p->pos_x += cos(p->player_angle - (PI / 2)) * p->move_speed;
-		p->pos_y += sin(p->player_angle - (PI / 2)) * p->move_speed;
+		step_x = cos(p->player_angle - PI / 2) * MOVE_SPEED;
+		step_y = sin(p->player_angle - PI / 2) * MOVE_SPEED;
+		move_player(p, map, step_x, step_y);
 	}
 	if (p->key_d)
 	{
-		p->pos_x += cos(p->player_angle + (PI / 2)) * p->move_speed;
-		p->pos_y += sin(p->player_angle + (PI / 2)) * p->move_speed;
+		step_x = cos(p->player_angle + PI / 2) * MOVE_SPEED;
+		step_y = sin(p->player_angle + PI / 2) * MOVE_SPEED;
+		move_player(p, map, step_x, step_y);
 	}
+}
+
+void	set_straight_keys(t_player *p, t_map map)
+{
+	double	step_x;
+	double	step_y;
+
+	step_x = cos(p->player_angle) * MOVE_SPEED;
+	step_y = sin(p->player_angle) * MOVE_SPEED;
+	if (p->key_w)
+		move_player(p, map, step_x, step_y);
+	if (p->key_s)
+		move_player(p, map, -step_x, -step_y);
+}
+
+void	set_player_movement(t_player *p, t_map map)
+{
+	set_straight_keys(p, map);
+	set_strafe_keys(p, map);
 	handle_rotation(p);
 }

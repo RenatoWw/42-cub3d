@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 15:37:58 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/06 17:58:43 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/06 21:57:01 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	draw_3d_wall_slice(t_player *player, t_mlx *mlx, int x, double dist)
 	dist = dist * cos(diff_angle);
 	if (dist <= 0.0001)
 		dist = 0.0001;
-	line_height = (MAP_OFFSET * WINDOW_HEIGHT) / dist;
+	line_height = ((MAP_OFFSET * WINDOW_HEIGHT) / dist) - 5;
 	draw_start = (WINDOW_HEIGHT / 2) - (line_height / 2);
 	if (draw_start < 0)
 		draw_start = 0;

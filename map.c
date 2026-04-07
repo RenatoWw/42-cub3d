@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 22:02:35 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/06 18:10:14 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/06 18:32:26 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	draw_map_block(t_game *data, int x_pixel, int y_pixel, int color)
 	int	offset_size;
 
 	i = 0;
-	offset_size = 32;
+	offset_size = MAP_OFFSET;
 	while (i < offset_size)
 	{
 		j = 0;
