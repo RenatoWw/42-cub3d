@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dapinhei <dapinhei@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/07 10:17:19 by dapinhei          #+#    #+#             */
+/*   Updated: 2026/04/07 10:17:42 by dapinhei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static int	count_lines(char **map)
@@ -19,17 +31,14 @@ static char	**add_line(char **map, char *line)
 	new = malloc(sizeof(char *) * (i + 2));
 	if (!new)
 		exit(1);
-
 	i = 0;
 	while (map && map[i])
 	{
 		new[i] = map[i];
 		i++;
 	}
-
 	new[i++] = ft_strdup(line);
 	new[i] = NULL;
-
 	free(map);
 	return (new);
 }

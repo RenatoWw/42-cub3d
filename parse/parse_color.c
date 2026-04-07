@@ -1,10 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_color.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dapinhei <dapinhei@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/07 10:17:34 by dapinhei          #+#    #+#             */
+/*   Updated: 2026/04/07 10:22:04 by dapinhei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	parse_rgb(char *str)
 {
 	char	**rgb;
+	int		r;
+	int		g;
+	int		b;
 
-	int r, g, b;
 	rgb = ft_split(str, ',');
 	if (!rgb[0] || !rgb[1] || !rgb[2])
 		exit(printf("Error\nRGB\n"));

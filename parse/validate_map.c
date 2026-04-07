@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_map.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dapinhei <dapinhei@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/04/07 10:18:02 by dapinhei          #+#    #+#             */
+/*   Updated: 2026/04/07 10:18:03 by dapinhei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static int	is_valid_char(char c)
@@ -8,13 +20,12 @@ static int	is_valid_char(char c)
 
 void	validate_map(t_map *map)
 {
-	int i;
-	int j;
-	int player;
+	int	i;
+	int	j;
+	int	player;
 
 	i = 0;
 	player = 0;
-
 	while (map->map_grid[i])
 	{
 		j = 0;
@@ -22,15 +33,12 @@ void	validate_map(t_map *map)
 		{
 			if (!is_valid_char(map->map_grid[i][j]))
 				exit(printf("Error\nInvalid char\n"));
-
 			if (ft_strchr("NSEW", map->map_grid[i][j]))
 				player++;
-
 			j++;
 		}
 		i++;
 	}
-
 	if (player != 1)
 		exit(printf("Error\nPlayer\n"));
 }
