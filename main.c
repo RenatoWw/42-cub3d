@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:10:51 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/07 18:36:01 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/09 21:41:16 by renato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	main(int argc, char **argv)
 	init_game(&data);
 	init_player_values(&data.player);
 	init_mlx(&data.mlx);
-	if (parse_cub(argv[1], &data.map))
+	if (parse_cub(argv[1], &data.map, &data.mlx))
 		return (1);
 	set_player_position(&data);
 	mlx_loop_hook(data.mlx.mlx, &render_frame, &data);

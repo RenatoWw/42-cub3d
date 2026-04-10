@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:17:59 by dapinhei          #+#    #+#             */
-/*   Updated: 2026/04/07 16:08:39 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/09 21:42:54 by renato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "get_next_line.h"
 #include <fcntl.h>
 
-int	parse_cub(char *file, t_map *map)
+int	parse_cub(char *file, t_map *map, t_mlx *mlx)
 {
 	int		fd;
 	char	*line;
@@ -26,7 +26,7 @@ int	parse_cub(char *file, t_map *map)
 	{
 		line = trim_newline(line);
 		if (is_texture(line))
-			parse_texture(line, map);
+			parse_texture(line, map, mlx);
 		else if (is_color(line))
 			parse_color(line, map);
 		else if (is_map_line(line))

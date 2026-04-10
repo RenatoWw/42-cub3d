@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapinhei <dapinhei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:14:47 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/07 09:08:12 by dapinhei         ###   ########.fr       */
+/*   Updated: 2026/04/09 22:06:24 by renato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define DR 0.0174533
 # define FOV 60
 # define MAP_OFFSET 16
-# define MOVE_SPEED 0.035
-# define ROTATION_SPEED 0.0015
+# define MOVE_SPEED 0.070
+# define ROTATION_SPEED 0.0075
 # define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 600
 
@@ -107,6 +107,18 @@ typedef struct s_point
 	int			color;
 }				t_point;
 
+typedef struct s_texture
+{
+	void	*img;
+	int		*addr;
+	int		width;
+	int		height;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}			t_texture;
+
+
 typedef struct s_map
 {
 	char		**map_grid;
@@ -121,6 +133,10 @@ typedef struct s_map
 	char		*east_texture;
 	char		*west_texture;
 
+	t_texture	north;
+	t_texture	east;
+	t_texture	west;
+	t_texture	south;
 }				t_map;
 
 typedef struct s_game
@@ -159,8 +175,9 @@ void			handle_rotation(t_player *p);
 void			draw_player(t_mlx *mlx, t_player player);
 
 // Raycasting
-void			draw_rays_3d(t_player *player, t_rays *rays, t_map map,
-					t_mlx *mlx);
+// void			draw_rays_3d(t_player *player, t_rays *rays, t_map map,
+// 					t_mlx *mlx);
+void			draw_rays_3d(t_game *data);
 double			get_distance(double px, double py, double rx, double ry);
 int				is_wall(t_map map, int map_x, int map_y);
 void			find_wall_coordinates(t_rays *rays, t_map map);
@@ -173,7 +190,7 @@ void			set_wall_color(t_rays *rays);
 
 // -----------------PARSE------------------------- //
 // parse.c
-int				parse_cub(char *file, t_map *map);
+int				parse_cub(char *file, t_map *map, t_mlx *mlx);
 
 // color
 int				parse_rgb(char *str);
@@ -186,7 +203,7 @@ void			add_map_line(char *line, t_map *map);
 void			set_player_position(t_game *game);
 // parse_texture
 void			free_split(char **split);
-void			parse_texture(char *line, t_map *map);
+void			parse_texture(char *line, t_map *map, t_mlx *mlx);
 
 // parse_utils
 int				is_texture(char *line);

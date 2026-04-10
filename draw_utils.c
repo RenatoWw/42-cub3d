@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:54:04 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/07 19:50:45 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/09 21:58:03 by renato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ int	render_frame(t_game	*data)
 {
 	set_player_movement(&data->player, data->map);
 	paint_bg(&data->mlx, data->map.floor_color, data->map.ceiling_color);
-	draw_rays_3d(&data->player, &data->player.rays, data->map, &data->mlx);
+	// draw_rays_3d(&data->player, &data->player.rays, data->map, &data->mlx);
+	draw_rays_3d(data);
 	draw_2d_map(data);
 	draw_player(&data->mlx, data->player);
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.win, data->mlx.img, 0, 0);
