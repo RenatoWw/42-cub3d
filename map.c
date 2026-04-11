@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 22:02:35 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/07 19:31:45 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/10 22:56:38 by renato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// void	init_map(t_map *map)
-// {
-// 	// static char	temp_map[10][10] = {
-// 	// {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-// 	// {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-// 	// {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-// 	// {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-// 	// {1, 0, 0, 0, 0, 0, 0, 1, 0, 1},
-// 	// {1, 0, 0, 0, 0, 0, 0, 0, 0, 1},
-// 	// {1, 0, 1, 1, 1, 0, 0, 0, 0, 1},
-// 	// {1, 0, 1, 0, 0, 0, 0, 0, 0, 1},
-// 	// {1, 0, 1, 0, 0, 0, 0, 0, 0, 1},
-// 	// {1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-// 	// };
-
-// 	// map->width = 10;
-// 	// map->height = 10;
-// 	// ft_memcpy(map->map_grid, temp_map, sizeof(temp_map));
-// }
 
 void	draw_map_block(t_game *data, int x_pixel, int y_pixel, int color)
 {
@@ -71,7 +51,7 @@ void	draw_2d_map(t_game *data)
 			if (x < row_len)
 				tile = data->map.map_grid[y][x];
 			if (tile == '1')
-				color = 0x00FFFFFF;
+				color = 0x000000FF;
 			else
 				color = 0x00000000;
 			draw_map_block(data, x * MAP_OFFSET, y * MAP_OFFSET, color);
@@ -96,4 +76,18 @@ void	finalize_map(t_map *map)
 	}
 	map->height = i;
 	map->width = max;
+}
+
+int	is_walkable_tile(t_map map, int map_x, int map_y)
+{
+	int	row_len;
+
+	if (map_y < 0 || map_y >= map.height)
+		return (0);
+	if (map_x < 0 || map_x >= map.width)
+		return (0);
+	row_len = (int)ft_strlen(map.map_grid[map_y]);
+	if (map_x >= row_len)
+		return (0);
+	return (map.map_grid[map_y][map_x] == '0');
 }

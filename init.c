@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 18:12:53 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/07 16:04:06 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/10 23:03:11 by renato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,12 @@ void	init_mlx(t_mlx *mlx)
 
 void	init_player_values(t_player *player)
 {
-	player->pos_x = 40.0;
-	player->pos_y = 40.0;
 	player->key_w = 0;
 	player->key_s = 0;
 	player->key_a = 0;
 	player->key_d = 0;
 	player->key_left = 0;
 	player->key_right = 0;
-	player->player_angle = 0.0;
 	player->move_speed = MOVE_SPEED;
 	player->delta_x = cos(player->player_angle) * player->move_speed;
 	player->delta_y = sin(player->player_angle) * player->move_speed;

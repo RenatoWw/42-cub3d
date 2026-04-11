@@ -6,7 +6,7 @@
 /*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:17:50 by dapinhei          #+#    #+#             */
-/*   Updated: 2026/04/09 21:58:33 by renato           ###   ########.fr       */
+/*   Updated: 2026/04/10 22:42:31 by renato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,20 @@ void	parse_texture(char *line, t_map *map, t_mlx *mlx)
 	else if (!ft_strncmp(s[0], "EA", 3))
 		load_texture(mlx, &map->east, s[1]);
 	free_split(s);
+}
+
+t_texture	*get_wall_texture(t_player *p, t_map *map)
+{
+	if (p->rays.wd.dist_h < p->rays.wd.dist_v)
+	{
+		if (p->rays.ray_angle > 0 && p->rays.ray_angle < PI)
+			return (&map->south);
+		return (&map->north);
+	}
+	else
+	{
+		if (p->rays.ray_angle > PI / 2 && p->rays.ray_angle < 3 * PI / 2)
+			return (&map->west);
+		return (&map->east);
+	}
 }

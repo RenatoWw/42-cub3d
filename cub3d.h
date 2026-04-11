@@ -6,7 +6,7 @@
 /*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:14:47 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/09 22:06:24 by renato           ###   ########.fr       */
+/*   Updated: 2026/04/10 22:54:22 by renato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define DR 0.0174533
 # define FOV 60
 # define MAP_OFFSET 16
-# define MOVE_SPEED 0.070
+# define MOVE_SPEED 0.1
 # define ROTATION_SPEED 0.0075
 # define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 600
@@ -118,7 +118,6 @@ typedef struct s_texture
 	int		endian;
 }			t_texture;
 
-
 typedef struct s_map
 {
 	char		**map_grid;
@@ -166,17 +165,15 @@ void			init_player_values(t_player *player);
 void			draw_2d_map(t_game *data);
 void			draw_map_block(t_game *data, int x_pixel, int y_pixel,
 					int color);
-void			init_map(t_map *map);
 void			finalize_map(t_map *map);
 
 // Player functions
 void			set_player_movement(t_player *p, t_map map);
 void			handle_rotation(t_player *p);
 void			draw_player(t_mlx *mlx, t_player player);
+int				is_walkable_tile(t_map map, int map_x, int map_y);
 
 // Raycasting
-// void			draw_rays_3d(t_player *player, t_rays *rays, t_map map,
-// 					t_mlx *mlx);
 void			draw_rays_3d(t_game *data);
 double			get_distance(double px, double py, double rx, double ry);
 int				is_wall(t_map map, int map_x, int map_y);
@@ -186,7 +183,6 @@ void			check_vertical_lines(t_player *player, t_rays *rays, t_map map);
 void			check_horizontal_lines(t_player *player, t_rays *rays,
 					t_map map);
 void			normalize_angle(double *angle);
-void			set_wall_color(t_rays *rays);
 
 // -----------------PARSE------------------------- //
 // parse.c
@@ -204,6 +200,7 @@ void			set_player_position(t_game *game);
 // parse_texture
 void			free_split(char **split);
 void			parse_texture(char *line, t_map *map, t_mlx *mlx);
+t_texture		*get_wall_texture(t_player *p, t_map *map);
 
 // parse_utils
 int				is_texture(char *line);

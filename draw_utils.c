@@ -6,7 +6,7 @@
 /*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:54:04 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/09 21:58:03 by renato           ###   ########.fr       */
+/*   Updated: 2026/04/10 23:16:14 by renato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,10 @@ void	paint_bg(t_mlx *mlx, int floor_color, int ceiling_color)
 	}
 }
 
-void	set_wall_color(t_rays *rays)
-{
-	if (rays->wd.dist_h > rays->wd.dist_v)
-		rays->wall_color = 0x000000FF;
-	else
-		rays->wall_color = 0x000000CC;
-}
-
 int	render_frame(t_game	*data)
 {
 	set_player_movement(&data->player, data->map);
 	paint_bg(&data->mlx, data->map.floor_color, data->map.ceiling_color);
-	// draw_rays_3d(&data->player, &data->player.rays, data->map, &data->mlx);
 	draw_rays_3d(data);
 	draw_2d_map(data);
 	draw_player(&data->mlx, data->player);
