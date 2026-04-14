@@ -1,7 +1,7 @@
-NO ./textures/north.xpm
-SO ./textures/south.xpm
-WE ./textures/west.xpm
-EA ./textures/east.xpm
+NO ./textures/imagens_game/04.xpm
+SO ./textures/imagens_game/03.xpm
+WE ./textures/imagens_game/04.xpm
+EA ./textures/imagens_game/03.xpm
 
 F 211,211,211
 C 169,169,169
@@ -9,5 +9,11 @@ C 169,169,169
 111111111111111
 100000000000001
 10E000000000001
-100000001111111
-111111111
+100000000000001
+100000000000001
+101000100000001
+101000111111111
+101000000000001
+100111111111111
+111111111111111
+
