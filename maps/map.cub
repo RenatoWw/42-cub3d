@@ -1,7 +1,7 @@
-NO ./textures/imagens_game/04.xpm
-SO ./textures/imagens_game/03.xpm
-WE ./textures/imagens_game/04.xpm
-EA ./textures/imagens_game/03.xpm
+NO ./textures/imagens_game/01.xpm
+SO ./textures/imagens_game/04.xpm
+WE ./textures/imagens_game/03.xpm
+EA ./textures/imagens_game/02.xpm
 
 F 211,211,211
 C 169,169,169
