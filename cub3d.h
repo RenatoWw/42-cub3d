@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:14:47 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/10 22:54:22 by renato           ###   ########.fr       */
+/*   Updated: 2026/04/14 13:49:57 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # define DR 0.0174533
 # define FOV 60
 # define MAP_OFFSET 16
-# define MOVE_SPEED 0.1
-# define ROTATION_SPEED 0.0075
+# define MOVE_SPEED 0.07
+# define ROTATION_SPEED 0.0025
 # define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 600
 
@@ -154,6 +154,7 @@ int				mouse_move(int x, int y, t_game *data);
 
 // Drawing functions
 int				render_frame(t_game *data);
+int				render_frame_bonus(t_game *data);
 void			paint_bg(t_mlx *mlx, int floor_color, int ceiling_color);
 void			draw_line(t_mlx *mlx, t_point p1, t_point p2, int color);
 

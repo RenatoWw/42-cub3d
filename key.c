@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 17:49:40 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/06 18:27:21 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/14 13:52:41 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	mouse_move(int x, int y, t_game *data)
 		return (0);
 	sensitivity = ROTATION_SPEED;
 	delta_x = x - (WINDOW_WIDTH / 2);
-	data->player.player_angle += delta_x * sensitivity;
+	data->player.player_angle += delta_x * (sensitivity - 0.0010);
 	normalize_angle(&data->player.player_angle);
 	data->player.delta_x = cos(data->player.player_angle)
 		* data->player.move_speed;
