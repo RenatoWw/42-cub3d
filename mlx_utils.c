@@ -6,19 +6,40 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 23:01:43 by renato            #+#    #+#             */
-/*   Updated: 2026/04/05 19:26:12 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/14 16:55:32 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	close_window(t_mlx *data)
+void	free_array(char **arr)
 {
-	mlx_destroy_image(data->mlx, data->img);
-	mlx_destroy_window(data->mlx, data->win);
-	mlx_destroy_display(data->mlx);
-	if (data->mlx != NULL)
-		free(data->mlx);
+	int	i;
+
+	i = 0;
+	if (!arr)
+		return ;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
+
+int	close_window(t_game *data)
+{
+	mlx_destroy_image(data->mlx.mlx, data->mlx.img);
+	mlx_destroy_image(data->mlx.mlx, data->map.north.img);
+	mlx_destroy_image(data->mlx.mlx, data->map.east.img);
+	mlx_destroy_image(data->mlx.mlx, data->map.west.img);
+	mlx_destroy_image(data->mlx.mlx, data->map.south.img);
+	mlx_destroy_window(data->mlx.mlx, data->mlx.win);
+	mlx_destroy_display(data->mlx.mlx);
+	if (data->mlx.mlx != NULL)
+		free(data->mlx.mlx);
+	if (data->map.map_grid != NULL)
+		free_array(data->map.map_grid);
 	exit(0);
 }
 

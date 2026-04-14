@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:14:47 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/14 13:49:57 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/14 16:50:57 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ typedef struct s_game
 
 // Minilibx utils functions
 void			my_pixel_put(t_mlx *data, int x, int y, int color);
-int				close_window(t_mlx *data);
+int				close_window(t_game *data);
 int				key_press(int keycode, t_game *data);
 int				key_release(int keycode, t_game *data);
 int				mouse_move(int x, int y, t_game *data);

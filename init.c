@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 18:12:53 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/10 23:03:11 by renato           ###   ########.fr       */
+/*   Updated: 2026/04/14 16:41:21 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,5 @@ void	init_player_values(t_player *player)
 	player->key_left = 0;
 	player->key_right = 0;
 	player->move_speed = MOVE_SPEED;
-	player->delta_x = cos(player->player_angle) * player->move_speed;
-	player->delta_y = sin(player->player_angle) * player->move_speed;
 	player->rotation_speed = ROTATION_SPEED;
 }
