@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:10:51 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/10 22:54:28 by renato           ###   ########.fr       */
+/*   Updated: 2026/04/14 17:34:21 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	mlx_loop_hook(data.mlx.mlx, &render_frame, &data);
 	mlx_hook(data.mlx.win, 2, 1L << 0, key_press, &data);
 	mlx_hook(data.mlx.win, 3, 1L << 1, key_release, &data);
-	mlx_hook(data.mlx.win, 17, 0, close_window, &data.mlx);
+	mlx_hook(data.mlx.win, 17, 0, close_window, &data);
 	mlx_loop(data.mlx.mlx);
 	return (0);
 }

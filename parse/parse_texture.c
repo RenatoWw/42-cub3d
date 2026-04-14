@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_texture.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapinhei <dapinhei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:17:50 by dapinhei          #+#    #+#             */
-/*   Updated: 2026/04/11 07:25:39 by dapinhei         ###   ########.fr       */
+/*   Updated: 2026/04/14 17:33:58 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	load_texture(t_mlx *mlx, t_texture *tex, char *path)
 	if (!tex->img)
 	{
 		printf("Error\nTexture not found.\n");
-		close_window(mlx);
+		exit(1);
+		// close_window(mlx);
 	}
 	tex->addr = (int *)mlx_get_data_addr(tex->img, &tex->bpp, &tex->line_len,
 			&tex->endian);

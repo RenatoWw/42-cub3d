@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 17:49:40 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/14 13:52:41 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/14 17:34:39 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	key_press(int keycode, t_game *data)
 {
 	if (keycode == 65307)
-		close_window(&data->mlx);
+		close_window(data);
 	if (keycode == 119)
 		data->player.key_w = 1;
 	else if (keycode == 115)
