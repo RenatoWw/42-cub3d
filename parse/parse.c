@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:17:59 by dapinhei          #+#    #+#             */
-/*   Updated: 2026/04/10 22:29:11 by renato           ###   ########.fr       */
+/*   Updated: 2026/04/14 15:00:36 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,11 @@ int	parse_cub(char *file, t_map *map, t_mlx *mlx)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (printf("Error\nFile\n"), 1);
-	while ((line = get_next_line(fd)))
+	while (1)
 	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
 		line = trim_newline(line);
 		if (is_texture(line))
 			parse_texture(line, map, mlx);
