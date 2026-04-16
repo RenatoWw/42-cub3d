@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 17:49:40 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/14 17:34:39 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/15 22:20:45 by renato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@ int	key_press(int keycode, t_game *data)
 		data->player.key_left = 1;
 	else if (keycode == 65363)
 		data->player.key_right = 1;
+	else if (keycode == 102)
+	{
+		if (data->lantern.is_lantern_on == 1)
+			data->lantern.is_lantern_on = 0;
+		else
+			data->lantern.is_lantern_on = 1;
+	}
 	return (0);
 }
 

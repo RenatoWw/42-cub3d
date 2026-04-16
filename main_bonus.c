@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:10:51 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/14 16:41:58 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/15 22:35:14 by renato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	main(int argc, char **argv)
 	init_game(&data);
 	init_player_values(&data.player);
 	init_mlx(&data.mlx);
+	init_lantern(&data);
 	if (parse_cub(argv[1], &data.map, &data.mlx))
 		return (1);
 	set_player_position(&data);

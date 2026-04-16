@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:14:47 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/14 16:50:57 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/15 22:35:10 by renato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,20 @@ typedef struct s_collision
 	double		step_y;
 }				t_colission;
 
+typedef struct s_lantern
+{
+	void	*img_lantern_on;
+	void	*img_lantern_off;
+	char	*addr_lantern_on;
+	char	*addr_lantern_off;
+	int		width;
+	int		height;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		is_lantern_on;
+}				t_lantern;
+
 typedef struct s_player
 {
 	double		pos_x;
@@ -143,6 +157,7 @@ typedef struct s_game
 	t_mlx		mlx;
 	t_player	player;
 	t_map		map;
+	t_lantern	lantern;
 }				t_game;
 
 // Minilibx utils functions
@@ -161,6 +176,7 @@ void			draw_line(t_mlx *mlx, t_point p1, t_point p2, int color);
 // Init functions
 void			init_mlx(t_mlx *mlx);
 void			init_player_values(t_player *player);
+void			init_lantern(t_game *data);
 
 // Map functions
 void			draw_2d_map(t_game *data);
@@ -184,6 +200,7 @@ void			check_vertical_lines(t_player *player, t_rays *rays, t_map map);
 void			check_horizontal_lines(t_player *player, t_rays *rays,
 					t_map map);
 void			normalize_angle(double *angle);
+void			draw_lantern(t_game *data);
 
 // -----------------PARSE------------------------- //
 // parse.c

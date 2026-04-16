@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/02 18:12:53 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/14 16:41:21 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/15 22:24:41 by renato           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,20 @@ void	init_player_values(t_player *player)
 	player->key_right = 0;
 	player->move_speed = MOVE_SPEED;
 	player->rotation_speed = ROTATION_SPEED;
+}
+
+void	init_lantern(t_game *data)
+{
+	data->lantern.img_lantern_off = mlx_xpm_file_to_image(data->mlx.mlx,
+			"textures/imagens_game/lamp_off.xpm",
+			&data->lantern.width, &data->lantern.height);
+	data->lantern.img_lantern_on = mlx_xpm_file_to_image(data->mlx.mlx,
+			"textures/imagens_game/lamp_on.xpm",
+			&data->lantern.width, &data->lantern.height);
+	data->lantern.addr_lantern_off = mlx_get_data_addr(
+			data->lantern.img_lantern_off, &data->lantern.bpp,
+			&data->lantern.line_len, &data->lantern.endian);
+	data->lantern.addr_lantern_on = mlx_get_data_addr(
+			data->lantern.img_lantern_on, &data->lantern.bpp,
+			&data->lantern.line_len, &data->lantern.endian);
 }
