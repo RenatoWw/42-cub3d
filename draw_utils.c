@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:54:04 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/15 22:32:19 by renato           ###   ########.fr       */
+/*   Updated: 2026/04/16 15:49:29 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	render_frame_bonus(t_game *data)
 	draw_rays_3d(data);
 	draw_2d_map(data);
 	draw_player(&data->mlx, data->player);
-	draw_lantern(data);
+	draw_lantern(&data->mlx, &data->lantern);
 	mlx_put_image_to_window(data->mlx.mlx, data->mlx.win, data->mlx.img, 0, 0);
 	return (0);
 }

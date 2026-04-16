@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   render_lantern.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/15 22:25:17 by renato            #+#    #+#             */
-/*   Updated: 2026/04/15 22:46:59 by renato           ###   ########.fr       */
+/*   Updated: 2026/04/16 16:05:05 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static unsigned int	get_lantern_pixel_color(t_lantern *lantern, char *addr, int x, int y)
+static unsigned int	get_px_color(t_lantern *lantern, char *addr, int x, int y)
 {
 	char	*pixel_ptr;
 	int		offset;
@@ -22,41 +22,41 @@ static unsigned int	get_lantern_pixel_color(t_lantern *lantern, char *addr, int 
 	return (*(unsigned int *)pixel_ptr);
 }
 
-void	draw_lantern(t_game *data)
+static void	init_values(t_lantern *lantern)
+{
+	if (lantern->is_lantern_on)
+		lantern->curr_addr = lantern->addr_lantern_on;
+	else
+		lantern->curr_addr = lantern->addr_lantern_off;
+	lantern->scale_factor = 5;
+	lantern->scaled_width = lantern->width * lantern->scale_factor;
+	lantern->scaled_height = lantern->height * lantern->scale_factor;
+	lantern->start_x = WINDOW_WIDTH - lantern->scaled_width;
+	lantern->start_y = WINDOW_HEIGHT - lantern->scaled_height;
+}
+
+void	draw_lantern(t_mlx *mlx, t_lantern *lantern)
 {
 	int				x;
 	int				y;
 	unsigned int	color;
-	char			*current_addr;
-	int				screen_x;
-	int				screen_y;
 
-	if (!data->lantern.img_lantern_on || !data->lantern.img_lantern_off)
-	{
-		printf("ERRO: Texturas do lampiao não carregaram!\n");
+	if (!lantern->img_lantern_on || !lantern->img_lantern_off)
 		return ;
-	}
-	if (data->lantern.is_lantern_on)
-		current_addr = data->lantern.addr_lantern_on;
-	else
-		current_addr = data->lantern.addr_lantern_off;
-	int start_x = WINDOW_WIDTH - data->lantern.width - 20;
-	int start_y = WINDOW_HEIGHT - data->lantern.height;
+	init_values(lantern);
 	y = 0;
-	while (y < data->lantern.height)
+	while (y < lantern->scaled_height)
 	{
 		x = 0;
-		while (x < data->lantern.width)
+		while (x < lantern->scaled_width)
 		{
-			color = get_lantern_pixel_color(&data->lantern, current_addr, x, y);
-			if ((int)color != (int)0xFF00FF && color != (unsigned int)0xFF000000)
-			{
-				screen_x = start_x + x;
-				screen_y = start_y + y;
-				if (screen_x >= 0 && screen_x < WINDOW_WIDTH &&
-					screen_y >= 0 && screen_y < WINDOW_HEIGHT)
-					my_pixel_put(&data->mlx, screen_x, screen_y, color);
-			}
+			lantern->tex_x = x / lantern->scale_factor;
+			lantern->tex_y = y / lantern->scale_factor;
+			color = get_px_color(lantern,
+					lantern->curr_addr, lantern->tex_x, lantern->tex_y);
+			if (color != 0x00FF00FF)
+				my_pixel_put(mlx, lantern->start_x + x,
+					lantern->start_y + y, color);
 			x++;
 		}
 		y++;

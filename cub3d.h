@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:14:47 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/15 22:35:10 by renato           ###   ########.fr       */
+/*   Updated: 2026/04/16 15:49:14 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,25 @@ typedef struct s_collision
 
 typedef struct s_lantern
 {
-	void	*img_lantern_on;
-	void	*img_lantern_off;
-	char	*addr_lantern_on;
-	char	*addr_lantern_off;
-	int		width;
-	int		height;
-	int		bpp;
-	int		line_len;
-	int		endian;
-	int		is_lantern_on;
+	void			*img_lantern_on;
+	void			*img_lantern_off;
+	char			*addr_lantern_on;
+	char			*addr_lantern_off;
+	char			*curr_addr;
+	int				width;
+	int				height;
+	int				bpp;
+	int				line_len;
+	int				endian;
+	int				is_lantern_on;
+	int				scale_factor;
+	int				scaled_width;
+	int				scaled_height;
+	int				tex_x;
+	int				tex_y;
+	int				start_x;
+	int				start_y;
+	unsigned int	color;
 }				t_lantern;
 
 typedef struct s_player
@@ -200,7 +209,7 @@ void			check_vertical_lines(t_player *player, t_rays *rays, t_map map);
 void			check_horizontal_lines(t_player *player, t_rays *rays,
 					t_map map);
 void			normalize_angle(double *angle);
-void			draw_lantern(t_game *data);
+void			draw_lantern(t_mlx *mlx, t_lantern *lantern);
 
 // -----------------PARSE------------------------- //
 // parse.c
