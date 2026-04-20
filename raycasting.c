@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/05 15:37:58 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/10 23:14:45 by renato           ###   ########.fr       */
+/*   Updated: 2026/04/20 16:36:56 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,37 +70,47 @@ void	check_vertical_lines(t_player *player, t_rays *rays, t_map map)
 	find_wall_coordinates(rays, map);
 }
 
-void	draw_3d_wall_slice(t_game *data, int x, t_texture *tex, double hit)
+static void	draw_slice_loop(t_game *data, int x, t_texture *tex, int tex_x)
 {
 	int		y;
 	int		tex_y;
-	double	line_height;
 	double	step;
 	double	tex_pos;
+	double	line_h;
 
-	data->player.rays.wd.dist_t *= cos(data->player.player_angle
-			- data->player.rays.ray_angle);
-	if (data->player.rays.wd.dist_t <= 0.0001)
-		data->player.rays.wd.dist_t = 0.0001;
-	line_height = ((MAP_OFFSET * WINDOW_HEIGHT) / data->player.rays.wd.dist_t);
-	y = (WINDOW_HEIGHT / 2) - (line_height / 2);
+	line_h = data->player.rays.wd.line_height;
+	y = (WINDOW_HEIGHT / 2) - (line_h / 2);
 	if (y < 0)
 		y = 0;
-	hit = (fmod(fabs(hit), MAP_OFFSET) * tex->width) / MAP_OFFSET;
-	if (hit >= tex->width)
-		hit = tex->width - 1;
-	step = (double)tex->height / line_height;
-	tex_pos = (y - (WINDOW_HEIGHT / 2) + (line_height / 2)) * step;
-	while (y < (WINDOW_HEIGHT / 2) + (line_height / 2) && y < WINDOW_HEIGHT)
+	step = (double)tex->height / line_h;
+	tex_pos = (y - (WINDOW_HEIGHT / 2) + (line_h / 2)) * step;
+	while (y < (WINDOW_HEIGHT / 2) + (line_h / 2) && y < WINDOW_HEIGHT)
 	{
 		tex_y = (int)tex_pos;
 		if (tex_y < 0)
 			tex_y = 0;
 		else if (tex_y >= tex->height)
 			tex_y = tex->height - 1;
-		my_pixel_put(&data->mlx, x, y++, tex->addr[(tex_y * tex->width) + (int)hit]);
+		my_pixel_put(&data->mlx, x, y++,
+			tex->addr[(tex_y * tex->width) + tex_x]);
 		tex_pos += step;
 	}
+}
+
+void	draw_3d_wall_slice(t_game *data, int x, t_texture *tex, double hit)
+{
+	int	tex_x;
+
+	data->player.rays.wd.dist_t *= cos(data->player.player_angle
+			- data->player.rays.ray_angle);
+	if (data->player.rays.wd.dist_t <= 0.0001)
+		data->player.rays.wd.dist_t = 0.0001;
+	data->player.rays.wd.line_height = ((MAP_OFFSET * WINDOW_HEIGHT)
+			/ data->player.rays.wd.dist_t);
+	tex_x = (int)((fmod(fabs(hit), MAP_OFFSET) * tex->width) / MAP_OFFSET);
+	if (tex_x >= tex->width)
+		tex_x = tex->width - 1;
+	draw_slice_loop(data, x, tex, tex_x);
 }
 
 void	draw_rays_3d(t_game *data)

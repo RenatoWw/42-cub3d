@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:10:51 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/20 15:55:19 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/20 17:00:06 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void	init_game(t_game *data)
 	data->map.east_texture = NULL;
 	data->map.west_texture = NULL;
 	data->lantern.is_lantern_on = 0;
+	data->lantern.img_lantern_on = NULL;
+	data->lantern.img_lantern_off = NULL;
 }
 
 int	main(int argc, char **argv)

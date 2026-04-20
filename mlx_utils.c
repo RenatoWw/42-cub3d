@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/03 23:01:43 by renato            #+#    #+#             */
-/*   Updated: 2026/04/14 16:55:32 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/20 16:46:07 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,10 @@ int	close_window(t_game *data)
 	mlx_destroy_image(data->mlx.mlx, data->map.east.img);
 	mlx_destroy_image(data->mlx.mlx, data->map.west.img);
 	mlx_destroy_image(data->mlx.mlx, data->map.south.img);
+	if (data->lantern.img_lantern_off)
+		mlx_destroy_image(data->mlx.mlx, data->lantern.img_lantern_off);
+	if (data->lantern.img_lantern_on)
+		mlx_destroy_image(data->mlx.mlx, data->lantern.img_lantern_on);
 	mlx_destroy_window(data->mlx.mlx, data->mlx.win);
 	mlx_destroy_display(data->mlx.mlx);
 	if (data->mlx.mlx != NULL)

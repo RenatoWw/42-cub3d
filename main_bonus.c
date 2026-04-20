@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:10:51 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/15 22:35:14 by renato           ###   ########.fr       */
+/*   Updated: 2026/04/20 16:42:49 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ static void	init_game(t_game *data)
 	data->map.south_texture = NULL;
 	data->map.east_texture = NULL;
 	data->map.west_texture = NULL;
+	data->lantern.is_lantern_on = 0;
+	data->lantern.img_lantern_on = NULL;
+	data->lantern.img_lantern_off = NULL;
 }
 
 int	main(int argc, char **argv)
@@ -35,11 +38,12 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	init_game(&data);
+	if (parse_cub(argv[1], &data.map))
+		return (1);
 	init_player_values(&data.player);
+	load_texture(&data.mlx, &data.map);
 	init_mlx(&data.mlx);
 	init_lantern(&data);
-	if (parse_cub(argv[1], &data.map, &data.mlx))
-		return (1);
 	set_player_position(&data);
 	mlx_loop_hook(data.mlx.mlx, &render_frame_bonus, &data);
 	mlx_hook(data.mlx.win, 2, 1L << 0, key_press, &data);

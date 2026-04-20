@@ -75,6 +75,7 @@ fclean: clean
 re: fclean all
 
 valgrind:
+	$(MAKE) -s bonus
 	valgrind --leak-check=full --show-leak-kinds=all --suppressions=includes/mlx.sup ./cub3D maps/map.cub
 
 .PHONY: all clean fclean re bonus
