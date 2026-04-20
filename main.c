@@ -6,11 +6,30 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:10:51 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/20 17:00:06 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/20 18:05:56 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+// invalid rgb range 			-- ok
+// missing floor color 			-- ok
+// missing ceiling color 		-- ok
+// color missing 				-- ok
+// color none 					-- ok
+
+// map_only 					-- leak
+// player error 				-- leak
+// duplicate texture 			-- leak
+// missing texture 				-- leak
+// empty 						-- ok
+// map_missing 					-- segfault e leak
+
+// filetype_missing .cub 		-- mapa carregando
+// filetype_wrong .ubc 			-- mapa carregando
+// textures not xpm 		 	-- mapa carregando
+
+// sem paredes ou com buraco	-- mapa carregando
 
 static void	init_game(t_game *data)
 {

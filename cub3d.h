@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:14:47 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/20 16:42:16 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/20 18:00:00 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,10 +214,12 @@ void			draw_lantern(t_mlx *mlx, t_lantern *lantern);
 // -----------------PARSE------------------------- //
 // parse.c
 int				parse_cub(char *file, t_map *map);
+void			error_exit_parser(char *error_msg,
+					t_map *map, char *curr_line, int fd);
 
 // color
 int				parse_rgb(char *str);
-void			parse_color(char *line, t_map *map);
+int				parse_color(char *line, t_map *map);
 
 // parse_map
 void			add_map_line(char *line, t_map *map);
