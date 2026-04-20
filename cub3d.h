@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:14:47 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/16 15:49:14 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/20 15:59:17 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_rays
 	t_dist		wd;
 }				t_rays;
 
-typedef struct s_collision
+typedef struct s_colission
 {
 	int			x_offset;
 	int			y_offset;
@@ -213,7 +213,7 @@ void			draw_lantern(t_mlx *mlx, t_lantern *lantern);
 
 // -----------------PARSE------------------------- //
 // parse.c
-int				parse_cub(char *file, t_map *map, t_mlx *mlx);
+int				parse_cub(char *file, t_map *map);
 
 // color
 int				parse_rgb(char *str);
@@ -226,14 +226,16 @@ void			add_map_line(char *line, t_map *map);
 void			set_player_position(t_game *game);
 // parse_texture
 void			free_split(char **split);
-void			parse_texture(char *line, t_map *map, t_mlx *mlx);
+void			parse_texture(char *line, t_map *map);
 t_texture		*get_wall_texture(t_player *p, t_map *map);
+void			load_texture(t_mlx *mlx, t_map *map);
 
 // parse_utils
 int				is_texture(char *line);
 int				is_color(char *line);
 int				is_map_line(char *line);
 char			*trim_newline(char *line);
+void			free_array(char **arr);
 
 // validate_map
 void			validate_map(t_map *map);

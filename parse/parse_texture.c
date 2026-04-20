@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:17:50 by dapinhei          #+#    #+#             */
-/*   Updated: 2026/04/14 17:33:58 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/20 15:48:27 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,6 @@ void	free_split(char **split)
 	free(split);
 }
 
-void	load_texture(t_mlx *mlx, t_texture *tex, char *path)
-{
-	tex->img = mlx_xpm_file_to_image(mlx->mlx, path, &tex->width, &tex->height);
-	if (!tex->img)
-	{
-		printf("Error\nTexture not found.\n");
-		exit(1);
-		// close_window(mlx);
-	}
-	tex->addr = (int *)mlx_get_data_addr(tex->img, &tex->bpp, &tex->line_len,
-			&tex->endian);
-}
-
 void	clean_newline(char *str)
 {
 	int	len;
@@ -46,7 +33,7 @@ void	clean_newline(char *str)
 		str[len - 1] = '\0';
 }
 
-void	parse_texture(char *line, t_map *map, t_mlx *mlx)
+void	parse_texture(char *line, t_map *map)
 {
 	char	**s;
 
@@ -60,13 +47,13 @@ void	parse_texture(char *line, t_map *map, t_mlx *mlx)
 	}
 	clean_newline(s[1]);
 	if (!ft_strncmp(s[0], "NO", 2))
-		load_texture(mlx, &map->north, s[1]);
+		map->north_texture = ft_strdup(s[1]);
 	else if (!ft_strncmp(s[0], "SO", 2))
-		load_texture(mlx, &map->south, s[1]);
+		map->south_texture = ft_strdup(s[1]);
 	else if (!ft_strncmp(s[0], "WE", 2))
-		load_texture(mlx, &map->west, s[1]);
+		map->west_texture = ft_strdup(s[1]);
 	else if (!ft_strncmp(s[0], "EA", 2))
-		load_texture(mlx, &map->east, s[1]);
+		map->east_texture = ft_strdup(s[1]);
 	free_split(s);
 }
 

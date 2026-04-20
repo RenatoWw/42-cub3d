@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:10:51 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/15 22:17:11 by renato           ###   ########.fr       */
+/*   Updated: 2026/04/20 15:55:19 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,11 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	init_game(&data);
-	init_player_values(&data.player);
-	init_mlx(&data.mlx);
-	if (parse_cub(argv[1], &data.map, &data.mlx))
+	if (parse_cub(argv[1], &data.map))
 		return (1);
+	init_player_values(&data.player);
+	load_texture(&data.mlx, &data.map);
+	init_mlx(&data.mlx);
 	set_player_position(&data);
 	mlx_loop_hook(data.mlx.mlx, &render_frame, &data);
 	mlx_hook(data.mlx.win, 2, 1L << 0, key_press, &data);

@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:17:59 by dapinhei          #+#    #+#             */
-/*   Updated: 2026/04/14 15:00:36 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/20 15:27:03 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "get_next_line.h"
 #include <fcntl.h>
 
-int	parse_cub(char *file, t_map *map, t_mlx *mlx)
+int	parse_cub(char *file, t_map *map)
 {
 	int		fd;
 	char	*line;
@@ -29,7 +29,7 @@ int	parse_cub(char *file, t_map *map, t_mlx *mlx)
 			break ;
 		line = trim_newline(line);
 		if (is_texture(line))
-			parse_texture(line, map, mlx);
+			parse_texture(line, map);
 		else if (is_color(line))
 			parse_color(line, map);
 		else if (is_map_line(line))
