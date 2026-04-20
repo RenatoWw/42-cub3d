@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:10:51 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/20 16:42:49 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/20 18:47:13 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,13 @@ int	main(int argc, char **argv)
 {
 	t_game	data;
 
-	if (argc != 2)
-	{
-		printf("Error\nUsage: ./cub3D map.cub\n");
-		return (1);
-	}
+	check_args(argc, argv);
 	init_game(&data);
 	if (parse_cub(argv[1], &data.map))
 		return (1);
 	init_player_values(&data.player);
+	if (set_player_position(&data) != 0)
+		error_exit_parser("Invalid player.", &data.map, NULL, -1);
 	load_texture(&data.mlx, &data.map);
 	init_mlx(&data.mlx);
 	init_lantern(&data);

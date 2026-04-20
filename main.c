@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:10:51 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/20 18:24:55 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/20 19:07:06 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@
 // empty 						-- ok
 // map_only 					-- ok
 // player error 				-- ok
-// map_missing 					-- segfault e leak
+// map_missing 					-- ok
 
-// filetype_missing .cub 		-- mapa carregando
-// filetype_wrong .ubc 			-- mapa carregando
-// textures not xpm 		 	-- mapa carregando
+// filetype_missing .cub 		-- ok
+// filetype_wrong .ubc 			-- ok
+// textures not xpm 		 	-- ok
 
 // sem paredes ou com buraco	-- mapa carregando
 
@@ -51,11 +51,7 @@ int	main(int argc, char **argv)
 {
 	t_game	data;
 
-	if (argc != 2)
-	{
-		printf("Error\nUsage: ./cub3D map.cub\n");
-		return (1);
-	}
+	check_args(argc, argv);
 	init_game(&data);
 	if (parse_cub(argv[1], &data.map))
 		return (1);

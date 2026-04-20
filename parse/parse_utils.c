@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:17:55 by dapinhei          #+#    #+#             */
-/*   Updated: 2026/04/20 18:10:56 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/20 19:06:56 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	finalize_all(t_map *map)
 	if (!map->north_texture || !map->south_texture
 		|| !map->east_texture || !map->west_texture)
 		error_exit_parser("Missing wall textures.", map, NULL, -1);
+	if (!map->map_grid)
+		error_exit_parser("Missing map.", map, NULL, -1);
 	validate_map(map);
 	finalize_map(map);
 }

@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:17:50 by dapinhei          #+#    #+#             */
-/*   Updated: 2026/04/20 18:14:35 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/20 18:59:08 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,19 +33,23 @@ void	clean_newline(char *str)
 		str[len - 1] = '\0';
 }
 
-void	parse_texture(char *line, t_map *map)
+int	parse_texture(char *line, t_map *map)
 {
 	char	**s;
 
 	s = ft_split(line, ' ');
 	if (!s || !s[1])
 	{
-		printf("Error\nInvalid texture\n");
 		if (s)
 			free_split(s);
-		exit(1);
+		return (1);
 	}
 	clean_newline(s[1]);
+	if (check_extension(s[1], ".xpm") != 0)
+	{
+		free_split(s);
+		return (1);
+	}
 	if (!ft_strncmp(s[0], "NO", 2) && map->north_texture == NULL)
 		map->north_texture = ft_strdup(s[1]);
 	else if (!ft_strncmp(s[0], "SO", 2) && map->south_texture == NULL)
@@ -55,6 +59,7 @@ void	parse_texture(char *line, t_map *map)
 	else if (!ft_strncmp(s[0], "EA", 2) && map->east_texture == NULL)
 		map->east_texture = ft_strdup(s[1]);
 	free_split(s);
+	return (0);
 }
 
 t_texture	*get_wall_texture(t_player *p, t_map *map)

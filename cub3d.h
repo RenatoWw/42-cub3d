@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:14:47 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/20 18:22:53 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/20 18:58:05 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,6 +216,8 @@ void			draw_lantern(t_mlx *mlx, t_lantern *lantern);
 int				parse_cub(char *file, t_map *map);
 void			error_exit_parser(char *error_msg,
 					t_map *map, char *curr_line, int fd);
+int				check_extension(char *filename, char *extension);
+void			check_args(int argc, char **argv);
 
 // color
 int				parse_rgb(char *str);
@@ -228,7 +230,7 @@ void			add_map_line(char *line, t_map *map);
 int				set_player_position(t_game *game);
 // parse_texture
 void			free_split(char **split);
-void			parse_texture(char *line, t_map *map);
+int				parse_texture(char *line, t_map *map);
 t_texture		*get_wall_texture(t_player *p, t_map *map);
 void			load_texture(t_mlx *mlx, t_map *map);
 

@@ -26,7 +26,8 @@ SRCS_COMMON = draw_utils.c \
 			  includes/get_next_line/get_next_line.c \
 			  includes/get_next_line/get_next_line_utils.c \
 			  render_lantern.c \
-			  textures.c
+			  textures.c \
+			  parse/parse_extension.c
 
 SRC_MANDATORY = main.c
 SRC_BONUS     = main_bonus.c
