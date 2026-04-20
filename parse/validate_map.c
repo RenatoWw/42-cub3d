@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_map.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapinhei <dapinhei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:18:02 by dapinhei          #+#    #+#             */
-/*   Updated: 2026/04/07 10:18:03 by dapinhei         ###   ########.fr       */
+/*   Updated: 2026/04/20 18:24:41 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,4 @@ void	validate_map(t_map *map)
 		}
 		i++;
 	}
-	if (player != 1)
-		exit(printf("Error\nPlayer\n"));
 }

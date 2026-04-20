@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:14:47 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/20 18:00:00 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/20 18:22:53 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -225,7 +225,7 @@ int				parse_color(char *line, t_map *map);
 void			add_map_line(char *line, t_map *map);
 
 // parse_player
-void			set_player_position(t_game *game);
+int				set_player_position(t_game *game);
 // parse_texture
 void			free_split(char **split);
 void			parse_texture(char *line, t_map *map);
@@ -241,4 +241,5 @@ void			free_array(char **arr);
 
 // validate_map
 void			validate_map(t_map *map);
+void			finalize_all(t_map *map);
 #endif

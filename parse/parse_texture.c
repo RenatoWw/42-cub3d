@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:17:50 by dapinhei          #+#    #+#             */
-/*   Updated: 2026/04/20 15:48:27 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/20 18:14:35 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ void	parse_texture(char *line, t_map *map)
 		exit(1);
 	}
 	clean_newline(s[1]);
-	if (!ft_strncmp(s[0], "NO", 2))
+	if (!ft_strncmp(s[0], "NO", 2) && map->north_texture == NULL)
 		map->north_texture = ft_strdup(s[1]);
-	else if (!ft_strncmp(s[0], "SO", 2))
+	else if (!ft_strncmp(s[0], "SO", 2) && map->south_texture == NULL)
 		map->south_texture = ft_strdup(s[1]);
-	else if (!ft_strncmp(s[0], "WE", 2))
+	else if (!ft_strncmp(s[0], "WE", 2) && map->west_texture == NULL)
 		map->west_texture = ft_strdup(s[1]);
-	else if (!ft_strncmp(s[0], "EA", 2))
+	else if (!ft_strncmp(s[0], "EA", 2) && map->east_texture == NULL)
 		map->east_texture = ft_strdup(s[1]);
 	free_split(s);
 }

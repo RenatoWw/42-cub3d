@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapinhei <dapinhei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:17:55 by dapinhei          #+#    #+#             */
-/*   Updated: 2026/04/07 10:17:56 by dapinhei         ###   ########.fr       */
+/*   Updated: 2026/04/20 18:10:56 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,15 @@ char	*trim_newline(char *line)
 	if (len > 0 && line[len - 1] == '\n')
 		line[len - 1] = '\0';
 	return (line);
+}
+
+void	finalize_all(t_map *map)
+{
+	if (map->floor_color == -1 || map->ceiling_color == -1)
+		error_exit_parser("Missing color.", map, NULL, -1);
+	if (!map->north_texture || !map->south_texture
+		|| !map->east_texture || !map->west_texture)
+		error_exit_parser("Missing wall textures.", map, NULL, -1);
+	validate_map(map);
+	finalize_map(map);
 }

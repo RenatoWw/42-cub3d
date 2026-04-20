@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:17:59 by dapinhei          #+#    #+#             */
-/*   Updated: 2026/04/20 18:06:36 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/20 18:11:02 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,6 @@ int	parse_cub(char *file, t_map *map)
 		free(line);
 	}
 	close(fd);
-	if (map->floor_color == -1 || map->ceiling_color == -1)
-		error_exit_parser("Missing color.", map, NULL, -1);
-	validate_map(map);
-	finalize_map(map);
+	finalize_all(map);
 	return (0);
 }

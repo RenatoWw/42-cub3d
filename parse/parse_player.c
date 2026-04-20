@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parse_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: renato <renato@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:17:47 by dapinhei          #+#    #+#             */
-/*   Updated: 2026/04/10 23:02:27 by renato           ###   ########.fr       */
+/*   Updated: 2026/04/20 18:26:10 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	set_player_aux(t_game *game, int *found, int i, int j)
+static int	set_player_aux(t_game *game, int *found, int i, int j)
 {
 	if (*found)
-		exit(printf("Error\nMultiple players\n"));
+		return (1);
 	game->player.pos_x = (j * MAP_OFFSET) + (MAP_OFFSET / 2);
 	game->player.pos_y = (i * MAP_OFFSET) + (MAP_OFFSET / 2);
 	if (game->map.map_grid[i][j] == 'S')
@@ -28,17 +28,18 @@ static void	set_player_aux(t_game *game, int *found, int i, int j)
 		game->player.player_angle = PI;
 	game->map.map_grid[i][j] = '0';
 	*found = 1;
+	return (0);
 }
 
-void	set_player_position(t_game *game)
+int	set_player_position(t_game *game)
 {
 	int	i;
 	int	j;
 	int	found;
 
-	i = 0;
+	i = -1;
 	found = 0;
-	while (game->map.map_grid[i])
+	while (game->map.map_grid[++i])
 	{
 		j = 0;
 		while (game->map.map_grid[i][j])
@@ -48,12 +49,13 @@ void	set_player_position(t_game *game)
 				|| game->map.map_grid[i][j] == 'E'
 				|| game->map.map_grid[i][j] == 'W')
 			{
-				set_player_aux(game, &found, i, j);
+				if (set_player_aux(game, &found, i, j) != 0)
+					return (1);
 			}
 			j++;
 		}
-		i++;
 	}
 	if (!found)
-		exit(printf("Error\nNo player\n"));
+		return (1);
+	return (0);
 }

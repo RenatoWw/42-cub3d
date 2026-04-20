@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:10:51 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/20 18:05:56 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/20 18:24:55 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@
 // color missing 				-- ok
 // color none 					-- ok
 
-// map_only 					-- leak
-// player error 				-- leak
-// duplicate texture 			-- leak
-// missing texture 				-- leak
+// duplicate texture 			-- ok
+// missing texture 				-- ok
 // empty 						-- ok
+// map_only 					-- ok
+// player error 				-- ok
 // map_missing 					-- segfault e leak
 
 // filetype_missing .cub 		-- mapa carregando
@@ -60,9 +60,10 @@ int	main(int argc, char **argv)
 	if (parse_cub(argv[1], &data.map))
 		return (1);
 	init_player_values(&data.player);
+	if (set_player_position(&data) != 0)
+		error_exit_parser("Invalid player.", &data.map, NULL, -1);
 	load_texture(&data.mlx, &data.map);
 	init_mlx(&data.mlx);
-	set_player_position(&data);
 	mlx_loop_hook(data.mlx.mlx, &render_frame, &data);
 	mlx_hook(data.mlx.win, 2, 1L << 0, key_press, &data);
 	mlx_hook(data.mlx.win, 3, 1L << 1, key_release, &data);
