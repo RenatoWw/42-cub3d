@@ -3,52 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dapinhei <dapinhei@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:17:59 by dapinhei          #+#    #+#             */
-/*   Updated: 2026/04/22 13:50:50 by dapinhei         ###   ########.fr       */
+/*   Updated: 2026/04/23 14:25:41 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "get_next_line.h"
 #include <fcntl.h>
-
-static void	clean_gnl(int fd)
-{
-	char	*temp;
-
-	if (fd >= 0)
-	{
-		while (1)
-		{
-			temp = get_next_line(fd);
-			if (!temp)
-				break ;
-			free(temp);
-		}
-		close(fd);
-	}
-}
-
-void	error_exit_parser(char *error_msg, t_map *map, char *curr_line, int fd)
-{
-	printf("Error\n%s\n", error_msg);
-	if (curr_line)
-		free(curr_line);
-	clean_gnl(fd);
-	if (map->north_texture)
-		free(map->north_texture);
-	if (map->south_texture)
-		free(map->south_texture);
-	if (map->east_texture)
-		free(map->east_texture);
-	if (map->west_texture)
-		free(map->west_texture);
-	if (map->map_grid)
-		free_array(map->map_grid);
-	exit(1);
-}
 
 static void	parse_config_line(char *line, t_map *map, int fd)
 {
@@ -80,15 +44,11 @@ static int	is_only_whitespace(char *line)
 	return (1);
 }
 
-int	parse_cub(char *file, t_map *map)
+static void	parse_line(int fd, t_map *map)
 {
-	int		fd;
 	char	*line;
 	int		map_started;
 
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (printf("Error\nFile\n"), 1);
 	map_started = 0;
 	while (1)
 	{
@@ -107,6 +67,16 @@ int	parse_cub(char *file, t_map *map)
 			error_exit_parser("Invalid content after map", map, line, fd);
 		free(line);
 	}
+}
+
+int	parse_cub(char *file, t_map *map)
+{
+	int		fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return (printf("Error\nFile\n"), 1);
+	parse_line(fd, map);
 	close(fd);
 	if (!map->map_grid)
 		error_exit_parser("Map missing", map, NULL, -1);

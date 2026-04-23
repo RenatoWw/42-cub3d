@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/01 18:14:47 by ranhaia-          #+#    #+#             */
-/*   Updated: 2026/04/20 18:58:05 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/23 15:33:14 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "includes/libft/libft.h"
 # include "includes/mlx/mlx.h"
+# include "includes/get_next_line/get_next_line.h"
 # include <math.h>
 # include <stdio.h>
 # include <string.h>
@@ -238,6 +239,7 @@ void			load_texture(t_mlx *mlx, t_map *map);
 int				is_texture(char *line);
 int				is_color(char *line);
 int				is_map_line(char *line);
+int				is_valid_char(char c);
 char			*trim_newline(char *line);
 void			free_array(char **arr);
 
