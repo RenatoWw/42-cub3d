@@ -1,7 +1,6 @@
-Este projeto foi criado como parte do
-currículo da 42 por <dapinhei> Danilo Pinheiro, <ranhaia-> Renato Anhaia Flud Pacheco
+*Este projeto foi criado como parte do currículo da 42 por dapinhei, ranhaia-*
 
-# cub3D - Descrição
+## Descrição
 
 Implementação de um motor gráfico simples em C baseado em **raycasting**, inspirado em jogos como *Wolfenstein 3D*.
 O projeto foi desenvolvido utilizando a **MiniLibX**, com foco em parsing robusto, validação de mapa e gerenciamento correto de memória.
@@ -17,10 +16,7 @@ Renderizar um ambiente 3D a partir de um mapa 2D (`.cub`), permitindo movimenta�
 
 ---
 
-
----
-
-##	Instruções:
+##	Instruções
 
 ##  Tecnologias utilizadas
 
@@ -49,35 +45,34 @@ Renderizar um ambiente 3D a partir de um mapa 2D (`.cub`), permitindo movimenta�
 
 ```
 .
-├── main.c
-├── parse/
-│   ├── parse.c
-│   ├── parse_map.c
-│   ├── parse_texture.c
-│   ├── parse_color.c
-│   ├── validate_map.c
-│   └── parse_utils.c
-├── raycasting.c
-C 225,30,0
-```
-
-### Mapa
-
-```
-111111
-100001
-├── player.c
-├── textures.c
-├── draw_utils.c
-├── map.c
 ├── includes/
 │   ├── mlx/
 │   ├── libft/
 │   └── get_next_line/
 └── maps/
+├── parse/
+│   ├── parse_color.c
+│   ├── parse_extension.c
+│   ├── parse_map.c
+│   ├── parse_player.c
+│   ├── parse_texture.c
+│   ├── parse_utils.c
+│   ├── parse_utils2.c
+│   └── parse.c
+│   ├── validate_map.c
+├── cub3d.h
+├── draw_utils.c
+├── init.c
+├── key.c
+├── main_bonus.c
+├── main.c
+├── map.c
+├── mlx_utils.c
+├── raycasting_utils.c
+├── raycasting.c
+├── render_lantern.c
+├── textures.c
 ```
-
----
 
 ##  Formato do mapa (.cub)
 
@@ -201,11 +196,6 @@ make bonus
 ./cub3D maps/map.cub
 ```
 
----Autores
-
-Danilo Pinheiro
-Renato Anhaia Flud Pacheco
-
 ##  Testes
 
 * Mapas válidos e inválidos
@@ -218,10 +208,7 @@ Renato Anhaia Flud Pacheco
 ##  Limitações
 
 * Não possui sistema avançado de iluminação
-* Performance não otimizada paraAutores
-
-Danilo Pinheiro
-Renato Anhaia Flud Pacheco mapas grandes
+* Performance não otimizada para mapas grandes
 
 ---
 
@@ -257,5 +244,9 @@ A IA foi utilizada como ferramenta de apoio durante o desenvolvimento, auxiliand
 * Apoio na identificação de problemas de implementação
 
 Todas as decisões finais, implementação e entendimento do código foram realizados manualmente.
+
+--- Autores ---
+
+Danilo Pinheiro
 
 Renato Anhaia Flud Pacheco

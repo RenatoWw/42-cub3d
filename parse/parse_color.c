@@ -6,7 +6,7 @@
 /*   By: ranhaia- <ranhaia-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/07 10:17:34 by dapinhei          #+#    #+#             */
-/*   Updated: 2026/04/20 18:00:04 by ranhaia-         ###   ########.fr       */
+/*   Updated: 2026/04/29 12:57:04 by ranhaia-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ int	parse_color(char *line, t_map *map)
 	free_split(s);
 	if (color == -1)
 		return (1);
-	if (line[0] == 'F')
+	if (line[0] == 'C')
 		map->floor_color = color;
-	else if (line[0] == 'C')
+	else if (line[0] == 'F')
 		map->ceiling_color = color;
 	return (0);
 }
